@@ -1,8 +1,10 @@
 package com.mysite.sbb.answer;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.CreatedDate;
 
+import com.mysite.sbb.comment.Comment;
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.user.SiteUser;
 
@@ -43,4 +47,8 @@ public class Answer {
     
     @ManyToMany
     Set<SiteUser> voter;
+    
+    @OneToMany(mappedBy="answer", cascade=CascadeType.REMOVE)
+    private List<Comment> commentList;
+    
 }

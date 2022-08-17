@@ -44,8 +44,8 @@ public class AnswerController {
     	 Question question = this.questionService.getQuestion(id);
     	 SiteUser siteUser = this.userService.getUser(principal.getName());
     	if(bindingResult.hasErrors()) {
-    		model.addAttribute("question", question);
-    		return"question_detail";
+    		
+    		return String.format("redirect:/question/detail/%s", id);
     	}   	
        
         Answer answer = this.answerService.create(question, answerForm.getContent(), siteUser); 
@@ -66,8 +66,12 @@ public class AnswerController {
     
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
-    public String answerModify(@Valid AnswerForm answerForm, BindingResult bindingResult,
-            @PathVariable("id") Integer id, Principal principal) {
+    public String answerModify(
+    		@Valid AnswerForm answerForm, 
+    		BindingResult bindingResult,
+            @PathVariable("id") Integer id, 
+            Principal principal
+            ) {
         if (bindingResult.hasErrors()) {
             return "answer_form";
         }
