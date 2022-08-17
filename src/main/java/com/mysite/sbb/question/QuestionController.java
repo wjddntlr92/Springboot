@@ -22,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.mysite.sbb.answer.Answer;
 import com.mysite.sbb.answer.AnswerForm;
 import com.mysite.sbb.answer.AnswerService;
+import com.mysite.sbb.comment.CommentForm;
 import com.mysite.sbb.user.SiteUser;
 import com.mysite.sbb.user.UserService;
 
@@ -54,7 +55,8 @@ public class QuestionController {
     		@PathVariable("id") Integer id,
     		@RequestParam(value="page",defaultValue="0") int page,
     		Model model,
-    		AnswerForm answerForm) {
+    		AnswerForm answerForm,
+    		CommentForm commentForm) {
     	
         Question q = this.questionService.getQuestion(id);
         Page<Answer> answerPaging = this.answerService.getAnswerList(page, q);
