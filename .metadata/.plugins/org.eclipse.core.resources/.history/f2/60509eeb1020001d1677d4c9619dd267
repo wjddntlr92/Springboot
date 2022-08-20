@@ -1,0 +1,22 @@
+
+
+
+<div th:fragment="sidebarFragment" class="col-sm-3"  style="background-color:rgb(255, 255, 255);">
+   	<div class="container-fluid">
+  		<div class="row flex-nowrap">
+    		<div class="col-7 bd-sidebar">
+      			<ul class="nav">
+        			<li><a>Side 1</a></li>
+        			<li><a>Side 2</a></li>
+        			<li><a>Side 3</a></li>
+        			<li><a>Side 4</a></li>
+        			<li><a>Side 5</a></li>
+        			<li><a>Side 6</a></li>
+        			<li><a>Side 7</a></li>
+        		<li><a>Side 8</a></li>
+      			</ul>
+      			<br>
+    		</div>
+    	</div>
+    </div>
+</div>    		

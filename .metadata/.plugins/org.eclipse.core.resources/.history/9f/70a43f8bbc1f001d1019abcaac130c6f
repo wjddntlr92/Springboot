@@ -1,0 +1,8 @@
+<nav th:fragment="sidebarFragment"  style="background-color:rgb(255, 255, 255);">
+    <div style="border-right:solid;20px; margin:padding30px;">
+    	<ul style="list-style: none;">
+    		<li><a href="/" style="font-size:20px;color:black;">SBB</a></li>
+    	</ul>
+    </div>
+        
+       

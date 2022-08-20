@@ -1,0 +1,18 @@
+package com.mysite.sbb.user;
+
+import lombok.Getter;
+
+@Getter
+public enum UserRole {
+	
+	ADMIN("ROLE_ADMIN"),
+	USER("ROLE_USER");
+	
+	userRole(String value){
+		this.value = value;
+	}
+	
+
+	pivate String value;
+	
+}

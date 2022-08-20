@@ -1,0 +1,27 @@
+<style>
+	ul{
+		list-style: none; margin:10px;
+	}
+	ul li{
+		list-style: none; margin-bottom:50px;
+	}
+	ul li a {
+		font-size:20px;color:black;
+	}
+</style>
+
+
+
+<div th:fragment="sidebarFragment" class="col-sm-2"  style="background-color:rgb(255, 255, 255);">
+    <div style=" padding:30px;">
+    	<ul>
+    		<li >
+    			<a href="/">Profile</a>
+    		</li>
+    		<li>
+    			<a href="/">Board</a>
+    		</li>
+    	</ul>
+    </div>
+</div>        
+       
