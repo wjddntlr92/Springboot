@@ -1,0 +1,20 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="col-lg-8">
+	<div >
+    <h2 class="my-3 border-bottom pb-2">Write</h2>
+    <form th:object="${itemUploadForm}" method="post">
+     	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <div th:replace"form_errors::formErrorsFragment"></div>
+        <div class="mb-3">
+            <label for="itemName" class="form-label">itemName</label>
+            <input type="text" th:field="*{itemName}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="itemDetail" class="form-label">itemDetail</label>
+            <textarea th:field="*{itemDetail}" class="form-control" rows="10"></textarea>
+        </div>
+        <input type="submit" value="save" class="btn btn-success my-2">
+    </form>
+	</div>
+</div>
+</html>

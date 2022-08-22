@@ -1,0 +1,9 @@
+package com.mysite.sbb.item;
+
+
+
+
+@RequestMapping("/item")
+public class ItemController {
+
+}

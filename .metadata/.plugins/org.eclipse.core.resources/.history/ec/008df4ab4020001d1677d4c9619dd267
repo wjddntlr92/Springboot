@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>	
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+    <title>Hello, sbb!</title>
+  	<style>
+  		#boot{
+			/* animation : 효과(@keyframes 이름) 동작시간 */
+			animation: fadein 5s;
+			
+		}
+		@keyframes fadein {
+		/* 효과를 동작시간 동안 0 ~ 1까지 */
+			from {
+				opacity: 0.1;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+		@keyframes fadeinout {
+  			0% { opacity: 0; }
+  			50% { opacity: 1; }
+  			100% { opacity: 0; }
+		}
+		
+  		a{
+			color:black;
+		}
+		
+		h2 {
+  			animation-duration: 3s;
+  			animation-name: slidein;
+		}
+		#board {
+  			animation-duration: 1s;
+  			animation-name: slideup;
+		}
+		@keyframes slidein {
+  			from {
+    			margin-left: 100%;
+    			width: 300%
+  			}
+
+  			to {
+    			margin-left: 0%;
+    			width: 100%;
+  			}
+		}@keyframes slideup {
+  			from {
+    			margin-top: 100%;
+    			height: 300%
+  			}
+
+  			to {
+    			margin-top: 0%;
+    			height: 100%;
+  			}
+		}
+  	</style>
+   
+</head>
+<body>
+
+<!-- 네비게이션바 -->
+<nav th:replace="navbar :: navbarFragment"></nav>
+<div class="container-fluid">
+	<div class="row justify-content-md-center">		
+		<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+		<th:block layout:fragment="content"></th:block>
+		<!-- 기본 템플릿 안에 삽입될 내용 End -->
+	</div>	
+</div>
+<!-- Bootstrap JS -->
+<script th:src="@{/bootstrap.min.js}"></script>
+<!-- 자바스크립트 Start -->
+<th:block layout:fragment="script"></th:block>
+<!-- 자바스크립트 End -->
+</body>
+</html>

@@ -1,0 +1,7 @@
+<html layout:decorate="~{layout}">
+
+<div layout:fragment="content">
+<input type="button"value="등록"/>
+</div>
+
+</html>

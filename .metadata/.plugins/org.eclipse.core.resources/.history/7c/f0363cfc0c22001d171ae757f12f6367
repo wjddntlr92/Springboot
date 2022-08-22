@@ -1,0 +1,9 @@
+package com.mysite.sbb.item;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RequestMapping("/item")
+@Controller
+public class ItemController {
+
+}

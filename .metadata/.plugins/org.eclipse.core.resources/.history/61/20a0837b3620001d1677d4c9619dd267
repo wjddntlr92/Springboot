@@ -1,0 +1,5 @@
+<html layout:decorate="~{layout}">
+<body>
+	<img src="/static/boot.png">
+</body>
+</html>

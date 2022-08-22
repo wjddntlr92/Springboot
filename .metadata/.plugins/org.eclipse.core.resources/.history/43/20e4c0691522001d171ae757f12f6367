@@ -1,0 +1,47 @@
+package com.mysite.sbb.item;
+
+import java.security.Principal;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.mysite.sbb.user.SiteUser;
+import com.mysite.sbb.user.UserService;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@RequestMapping("/item")
+@Controller
+public class ItemController {
+	
+	private final UserService userService;
+	
+	
+	@GetMapping("/list")
+	public String itemList() {
+		
+		return "/item/list";
+	}
+	
+	@GetMapping("/upload")
+	private String uploadItem(ItemUploadForm itemUploadForm) {
+		return "/item/upload";
+	}
+	
+	@PostMapping("/upload")
+	private String uploadItem(ItemUploadForm itemUploadForm, BindingResult bindingResult, Principal principal) {
+		
+		if(bindingResult.hasErrors()) {
+			return "/item/upload";
+		}
+		
+		SiteUser siteUser = this.userService.getUser(principal.getName());
+		
+		return "/item/upload";
+	}
+
+}
