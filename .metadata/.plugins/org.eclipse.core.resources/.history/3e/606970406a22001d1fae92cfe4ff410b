@@ -1,0 +1,22 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="col-lg-8">
+	<div>
+    <h2 class="my-3 border-bottom pb-2">Write</h2>
+	</div>
+    <form th:action="@{/question/create}" th:object="${questionForm}" method="post">
+     	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <div th:replace"form_errors::formErrorsFragment"></div>
+        <div class="mb-3">
+            <label for="subject" class="form-label">subject</label>
+            <input type="text" th:field="*{subject}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">contents</label>
+            <textarea th:field="*{content}" class="form-control" rows="10"></textarea>
+        </div>
+        <input type="submit" value="save" class="btn btn-success my-2">
+        <h2 th:text="${bindingResult.hasErrors();}"/>
+    </form>
+	</div>
+</div>
+</html>

@@ -1,0 +1,14 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="col-lg-7" id="content">
+	
+	<div id="boot" style="margin-top: 100px;">
+		<div style="width:100%;margin:0 auto;text-align:center;">
+			<img src="boot.png" style="max-width:1--%;">
+		</div>
+	</div>
+	<div style="margin-top: 100px;">
+		<h2 style="text-align: center;">This page is maded by springboot</h2>
+	</div>
+	
+	
+</html>

@@ -1,0 +1,13 @@
+package com.mysite.sbb;
+
+
+
+@Controller
+public class MainController {
+  
+    @RequestMapping("/")    
+    public String root() {
+    	
+        return "home";
+    }
+}

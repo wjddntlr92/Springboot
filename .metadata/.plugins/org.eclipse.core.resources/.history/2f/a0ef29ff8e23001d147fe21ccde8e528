@@ -1,0 +1,31 @@
+<html layout:decorate="~{layout}">
+
+<div layout:fragment="content" class="col-lg-8" id="content">
+	<div class="container">
+		<div style="margin-bottom:40px;">
+    		<h2 class="my-3 border-bottom pb-2">Item List</h2>
+		</div>
+  		<div class="row row-cols-3">
+    		<div class="col">
+    			<div class="card" style="width: 18rem;">
+    				<img width="70%" height="200" src="boot.png"  class="card-img-top" >
+  					<div class="card-body">
+    					<h5 class="card-title">Card title</h5>
+  						<div>
+  						sads
+  						</div>
+    					<a href="#" class="btn btn-light">Go somewhere</a>
+  					</div> 					
+				</div>			
+			</div>				
+  		</div>
+	</div>
+		<div class="col-6">
+        	<div style="margin: 40px;">
+            	<a th:href="@{/item/upload}"  class="btn btn-success">UpLoad</a>
+        	</div>	
+        </div>
+        
+
+
+</html>

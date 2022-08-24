@@ -1,0 +1,6 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="col-lg-6" id="content">
+	<div>
+		<img src="boot.png">
+	</div>
+</html>

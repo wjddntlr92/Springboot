@@ -1,0 +1,23 @@
+package com.mysite.sbb.item;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RequestMapping("/item")
+@Controller
+public class ItemController {
+	
+	
+	@GetMapping("/list")
+	public String itemList() {
+		
+		return "/item/list";
+	}
+	
+	@GetMapping("/upload")
+	private String uploadItem(ItemUploadForm itemUploadForm) {
+		return "/item/upload";
+	}
+
+}

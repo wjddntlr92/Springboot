@@ -1,0 +1,9 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="col-auto" id="content">
+	<div id="boot" style="margin-top: 100px;">
+		<img src="boot.png">
+	</div>
+	<div style="margin-top: 100px;">
+		<h2 style="text-align: center;">This page is maded by springboot</h2>
+	</div>
+</html>

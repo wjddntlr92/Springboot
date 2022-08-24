@@ -1,0 +1,72 @@
+<html lang="ko">
+<head>	
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+    <title>Hello, sbb!</title>
+   	<style>
+  		a{
+	color:rgb(0, 128, 0);
+}
+h2 {
+  			animation-duration: 3s;
+  			animation-name: slidein;
+		}
+		@keyframes slidein {
+  			from {
+    			margin-left: 100%;
+    			width: 300%
+  			}
+
+  			to {
+    			margin-left: 0%;
+    			width: 100%;
+  			}
+		}
+  	</style>
+   
+</head>
+<body>
+	<div class="container justify-content-center" >
+		<div class="row justify-content-md-center">
+			<div class="col-md-auto" style="margin-top: 200px;margin-bottom:1px;">			
+    			<a class="navbar-brand" href="/" font:10px;>SBB</a>
+			</div>
+		</div>	
+		
+		<div class="row justify-content-md-center">
+			<div class="col-md-auto">			
+    		<form th:action="@{/user/login}" method="post">    		
+        		<div th:if="${param.error}">
+            		<div class="alert alert-danger">
+                		사용자ID 또는 비밀번호를 확인해 주세요.
+            		</div>
+        		</div>
+        		<div class="mb-3" style="margin: 30px;width:300px;">
+            		<label for="username" class="form-label">user ID</label>
+            		<input type="text" name="username" id="username" class="form-control">
+        		</div>
+        		<div class="mb-3"style="margin: 30px;width:300px;">
+            		<label for="password" class="form-label">password</label>
+            		<input type="password" name="password" id="password" class="form-control">
+        		</div>
+        		<div class="mb-1"style="margin: 30px;">
+        			<div class="row">
+        				<div class="col lg-2">
+        					<button type="submit" class="btn btn-success">LogIn</button>
+        				</div>
+        				<div class="col md-2" style="padding: 5px;">	
+        					<a th:href="@{/user/signup}">SignUp</a>
+        				</div>
+        			</div>
+        		</div>
+    		</form>
+			</div>
+		</div>
+	</div>	
+	<script th:src="@{/bootstrap.min.js}"></script>
+</body>		
+
+</html>

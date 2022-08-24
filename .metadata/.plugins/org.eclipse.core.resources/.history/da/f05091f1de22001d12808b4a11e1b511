@@ -1,0 +1,42 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="col-lg-8">
+	<div >
+    <h2 class="my-3 border-bottom pb-2">Item Upload</h2>
+    <form th:object="${itemUploadForm}" method="post">
+     	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+      	<div  class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">    		
+    		<div th:each="err : ${#fields.allErrors()}" th:text="${err}">
+    		</div>    
+		</div>		
+        <div class="mb-3">
+            <label for="itemName" class="form-label">itemName</label>
+            <input type="text" th:field="*{itemName}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="itemDetail" class="form-label">itemDetail</label>
+            <textarea th:field="*{itemDetail}" class="form-control" rows="10"></textarea>
+        </div>
+        <div class="row row-cols-auto">
+        	<div class="col-2">
+        		<label for="amount">Quantity :</label>
+  				<input type="number" class="form-control" th:field="*{amount}" min="1">
+        	</div>
+        	<div class="col-4">
+        		<label for="quantity">price :</label>
+  				<input type="number" class="form-control" th:field="*{price}" min="1">
+        	</div>
+        	<div class="col-4">
+        		<label for="imgs">max size: 5MB</label>
+  				<input type="file" multiple="multiple" class="form-control" name="imgs" >
+        	</div>
+        </div>
+        <input type="submit" value="save" class="btn btn-success my-2">
+    </form>
+    
+	</div>
+</div>
+
+ 	
+
+
+</html>
