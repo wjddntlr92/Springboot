@@ -1,0 +1,11 @@
+package com.mysite.sbb.cart;
+
+import com.mysite.sbb.item.SiteItem;
+
+public class cartItem {
+	
+	private SiteItem siteItem;
+	
+	
+
+}

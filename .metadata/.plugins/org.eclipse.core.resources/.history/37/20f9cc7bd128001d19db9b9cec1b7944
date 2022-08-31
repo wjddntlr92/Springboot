@@ -1,0 +1,29 @@
+<html layout:decorate="~{layout}">
+
+	<div layout:fragment="content" class="col-lg-8" id="content">
+		<h2 >장바구니</h2>
+		
+		<div class="card mb-3" style="max-width: 1000px;" th:each="cartItem, loop : ${cart.cartItemList}" style="margin-top: 20px;">
+  			<div class="row g-0">
+    			<div class="col-md-4" th:each="itemImg, loop : ${cartItem.siteItem.itemImgs} "th:if=" ${loop.index} == 0 " >
+      				<img th:src="@{|/images/${itemImg.itemImgUploadName}|}" style="width: 200px; height:200px;padding:10px;" class="img-fluid rounded-start" alt="..." >
+    			</div>
+    			<div class="col-md-8">
+      				<div class="card-body">
+       				<h5 class="card-title" th:text="${cartItem.siteItem.itemName}">Card title</h5>
+        				<p class="card-text" th:text="|가격 : ${cartItem.siteItem.price}원|">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        				<p class="card-text"><small class="text-muted" th:text="|수량 : ${cartItem.siteItem.amount} 개|">Last updated 3 mins ago</small></p>
+        				<a href="javascript:void(0);" th:data-uri="@{|/cart/list|}"
+               	 		class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
+                		th:if="${cart.siteUser != null and #authentication.getPrincipal().getUsername() == cart.siteUser.username}"
+               			th:text="delete"></a>
+                		</a>
+      				</div>
+    			</div>
+  			</div>
+		</div>
+		
+		
+		
+	</div>
+<html>

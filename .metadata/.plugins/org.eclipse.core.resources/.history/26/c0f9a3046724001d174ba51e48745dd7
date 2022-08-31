@@ -1,0 +1,14 @@
+package com.mysite.sbb;
+
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+public class WebMvcConfiguration implements WebMvcConfigurer {
+	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		
+		registry.addResourceHandler("img/**").addResourceLocations("c:/sts-workspace/sbb/src/main/resources/static/item/");
+	}
+
+}

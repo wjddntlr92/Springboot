@@ -1,0 +1,11 @@
+package com.mysite.sbb.item;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+
+public enum ItemStatus {
+
+	SELL,SOLD_OUT;
+}

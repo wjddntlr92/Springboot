@@ -1,0 +1,15 @@
+
+<div th:fragment="formErrorsFragment" class="alert alert-danger" 
+    role="alert" th:if="${#fields.hasAnyErrors()}">
+    <h1 th:text="${#fields.hasAnyErrors()}"/>
+    <div th:each="err : ${#fields.allErrors()}" th:text="${err}">
+    </div>    
+</div>
+
+
+<div th:fragment="formErrorsFragment" class="alert alert-success" 
+    role="alert" th:if="!${#fields.hasAnyErrors()}">
+    <h1 th:text="성공"/>
+    <div th:text="처리되었습니다.">
+    </div>    
+</div>

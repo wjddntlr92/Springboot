@@ -1,0 +1,22 @@
+package com.mysite.sbb.cartItem;
+
+import org.springframework.stereotype.Service;
+
+import com.mysite.sbb.cart.Cart;
+import com.mysite.sbb.item.SiteItem;
+
+
+@Service
+public class CartItemService {
+	
+	
+	public void createCartItem(Cart cart, SiteItem item, int amount ) {
+		
+		CartItem cartItem = new CartItem();
+		cartItem.setSiteItem(item);
+		cartItem.setAmount(amount);
+		cartItem.setCart(cart);
+		
+	}
+
+}

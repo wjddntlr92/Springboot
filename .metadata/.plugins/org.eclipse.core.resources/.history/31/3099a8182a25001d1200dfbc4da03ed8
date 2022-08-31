@@ -1,0 +1,47 @@
+<html layout:decorate="~{layout}">
+
+<div layout:fragment="content" class="col-lg-8" id="content">
+	<div class="container">
+		<div style="margin-bottom:40px;">
+    		<h2 class="my-3 border-bottom pb-2">Item List</h2>
+		</div>
+  		<div class="row row-cols-4">
+    		<div class="col" th:each="item, loop :${paging}">
+    			<div class="card" style="width: 12rem; margin:20px;">
+    				<div th:each="itemImg, loop : ${item.itemImgs}">
+    					<img th:src="@{|/images/${itemImg.itemImgUploadName}|}" th:if=" ${loop.index} == 0 "  class="card-img-top" alt="...">
+    				</div>
+    				
+  					<div class="card-body" >
+    					<h5 class="card-title" th:text="${item.itemName}"></h5>
+  						<div style="margin-top: 20px;"  th:text="|${item.price} 원|">  												
+  						</div>
+    					<a th:href="@{|/item/detail/${item.id}|}" class="btn btn-light" style="margin-top: 20px;">show detail</a>
+  					</div> 					
+				</div>			
+			</div>
+							
+  		</div>
+	</div>
+	<div class="row">
+	
+		<div class="col-6">
+        	<div style="margin: 40px;">
+            	<a th:href="@{/item/upload}"  class="btn btn-success">UpLoad</a>
+        	</div>	
+        </div>
+        
+        <div class="col-5">
+            <div class="input-group" style="margin: 40px;">
+                <input type="text" id="search_kw" class="form-control" th:value="${kw}">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success" type="button" id="btn_search">Search</button>
+                </div>
+            </div>
+        </div>
+        
+	</div>    
+        
+
+
+</html>

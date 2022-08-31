@@ -1,0 +1,14 @@
+package com.mysite.sbb.cartItem;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.mysite.sbb.item.SiteItem;
+
+public interface CartItemRepository extends JpaRepository<CartItem, Long> {
+	
+	
+	Optional<CartItem> findBySiteItem(SiteItem siteItem);
+
+}

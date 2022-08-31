@@ -1,0 +1,23 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="col-lg-7" id="content">
+	
+	<div id="boot" style="margin-top: 100px;">
+		<div style="width:100%;margin:0 auto;text-align:center;">
+			<img src="boot.png" style="max-width:100%;">
+		</div>
+	</div>
+	<div style="margin-top: 100px;">
+		<h2 style="text-align: center;">This page is maded by springboot</h2>
+	</div>
+	<div class="col">
+    			<div class="card" style="width: 18rem;">
+    				<img src="boot.png" class="card-img-top" alt="...">
+  					<div class="card-body">
+    					<h5 class="card-title">Card title</h5>
+    					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    					<a href="#" class="btn btn-light">Go somewhere</a>
+  					</div> 					
+				</div>			
+			</div>  
+	
+</html>

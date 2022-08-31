@@ -1,0 +1,22 @@
+package com.mysite.sbb.cart;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.RequiredArgsConstructor;
+
+
+@RequestMapping("/cart")
+@Controller
+@RequiredArgsConstructor
+public class CartController {
+
+	private final CartService cartService;
+	
+	
+	@RequestMapping("/list")
+	public String showCartList() {
+		return "/cart/list";
+	}
+	
+}

@@ -1,0 +1,39 @@
+package com.mysite.sbb.cart;
+
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.mysite.sbb.user.SiteUser;
+
+import lombok.RequiredArgsConstructor;
+
+
+@RequiredArgsConstructor
+@Service
+public class CartService {
+	
+	private final CartRepository cartRepository;
+	
+	
+	public Cart createCart(SiteUser siteUser) {
+		Cart cart = new Cart();
+		cart.setSiteUser(siteUser);
+		return this.cartRepository.save(cart);
+		
+	}
+	
+	
+	public Cart getCart(SiteUser siteUser) {
+		
+		Optional<Cart> cart = this.cartRepository.findBySiteUser(siteUser);
+		if(cart.isPresent()) {
+			return cart.get();
+		}
+		else {
+			 return createCart(siteUser);
+			
+		}
+	}
+
+}
