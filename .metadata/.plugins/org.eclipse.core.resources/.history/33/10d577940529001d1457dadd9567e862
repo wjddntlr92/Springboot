@@ -1,0 +1,27 @@
+#SERVER PORT
+server.port=8001
+# DATABASE
+spring.datasource.url=jdbc:postgresql://ls-1cf5059580c9a74ac1174ec2aa810dd778f19f6e.cwcwoslntoxx.ap-northeast-2.rds.amazonaws.com:5432/sbb
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.datasource.username=dbmasteruser
+spring.datasource.password=*39hr^*|=NT1&Y}{<hL7OW9znpxy6tX~
+
+# JPA
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=update
+
+
+# logging
+logging.logback.rollingpolicy.max-history=30
+logging.logback.rollingpolicy.max-file-size=100MB
+logging.file.name=logs/sbb.log
+logging.logback.rollingpolicy.file-name-pattern=${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
+logging.pattern.dateformat=yyyy-MM-dd HH:mm:ss.SSS,Asia/Seoul
+
+
+#fileService
+file.upload.directory=/home/ubuntu/sbb/static/item
+file.download.directory=/home/ubuntu/sbb/static/item/
+
+spring.servlet.multipart.maxFileSize=10MB
+spring.servlet.multipart.maxRequestSize=20MB

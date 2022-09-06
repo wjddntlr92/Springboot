@@ -1,0 +1,146 @@
+<html layout:decorate="~{layout}">
+	<div layout:fragment="content" class="col-sm-6" style"margin:30px;">
+	
+	<div class="alert alert-danger" role="alert" th:if="${bindingResult != null}">
+		장바구니에 이미 존재합니다 
+	</div>
+	<div class="alert alert-success" role="alert" th:if="${addItemSuccess == true}">
+		장바구니에 추가되었습니다. <a href="#" class="alert-link" th:text="${bindingResult}">an example link</a>
+	</div>				
+	<div class="row" >
+	
+		<div class="col">			
+			
+			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+ 				<div class="carousel-indicators">
+    				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+ 				</div>
+  				<div class="carousel-inner">
+   					<div class="carousel-item " th:classappend="${loop.index} == 0 ? active"  th:each="itemImg, loop :${item.itemImgs}">
+     				<img th:src="@{|/images/${itemImg.itemImgUploadName}|}" style=" height:500px;" class="d-block w-100" alt="...">
+    				</div>    
+ 				 </div>
+ 			 	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    				<span class="visually-hidden">Previous</span>
+  				</button>
+  				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+    				<span class="visually-hidden">Next</span>
+  				</button>
+			</div>
+		</div>		
+		
+		<div class="col">	
+			<h2 class="border-bottom py-2" th:text="${item.itemName}">
+		 	</h2>
+  			<div class="card my-3">
+        		<div class="card-body">
+        			<div class="card-text" id= "price" value="$(item.price)" style="white-space: pre-line;margin-bottom:10px;" th:text="|가격: ${item.price} 원|">
+            		</div>            		
+            		<div class="card-text" style="white-space: pre-line;margin-bottom:10px;" th:text="|판매상태: ${item.itemStatus}|">
+            		</div>
+            		<div class="card-text" style="white-space: pre-line;margin-bottom:10px;" th:text="|상품설명: ${item.itemDetail}|">
+            		</div>
+           			<div class="d-flex justify-content-end">
+            	 		<div th:if="${item.modifyDate != null}" class="badge bg-light text-dark p-2 text-start mx-3">
+                			<div class="mb-2">modified at
+                			</div>
+                			<div th:text="${#temporals.format(item.modifyDate, 'yyyy-MM-dd HH:mm')}">
+                			</div>
+            			</div>
+               			<div class="badge bg-light text-dark p-2 text-start">
+                  			<div class="mb-2">
+                    			<span th:if="${item.author != null}" th:text="${item.author.username}"></span>
+                			</div>
+                   			<div th:text="${#temporals.format(item.createDate, 'yyyy-MM-dd HH:mm')}">
+                    		</div>
+               			</div>
+          			</div>
+         		 	<div class="my-3">            	
+            			<a th:href="@{|/item/modify/${item.id}|}" class="btn btn-sm btn-outline-secondary"
+                		sec:authorize="isAuthenticated()"
+                		th:if="${item.author != null and #authentication.getPrincipal().getUsername() == item.author.username}"
+               			th:text="edit"></a>
+               			<a href="javascript:void(0);" th:data-uri="@{|/item/delete/${item.id}|}"
+               	 		class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
+                		th:if="${item.author != null and #authentication.getPrincipal().getUsername() == item.author.username}"
+               			th:text="delete"></a>
+            		</div>            
+       			</div>
+    		</div>
+    		
+			<div class="row" style="margin-top: 30px;" th:if="${ item.itemStatus.toString != 'SOLD_OUT' }">
+        		<div class="col-3">
+        			<label for="amount">Quantity :</label>
+  					<input type="number" class="form-control" id="amount" onchange="amountChange()"  min="1"  value="1">
+        		</div>
+        		<div class="col lg-4" style="padding: 20px;">
+        			<button type="button" class="btn btn-success btn-lg" onclick="cart()">장바구니</button>
+                	<button type="button" class="btn btn-success btn-lg" onclick="order()">바로구매</button>
+        		</div>        		        		
+        	</div>
+        	<div class="text-right mgt-50">
+                <h5>결제 금액</h5>
+                <h3 name="totalPrice" id="totalPrice" class="font-weight-bold" th:text="${item.price}"></h3>
+            </div>
+        	
+        	<form th:action="@{/cart/create}" method="post" id="createCartItem">
+        		
+        		<input type="hidden" id="itemId" name="itemId" th:value="${item.id}">
+        		<input type="hidden" id="itemAmount" name="itemAmount" >
+        	</form>
+        						
+		</div>   	
+		
+	</div>
+	
+	<script layout:fragment="script" th:inline="javascript">
+		const delete_elements = document.getElementsByClassName("delete");
+		Array.from(delete_elements).forEach(function(element) {
+    		element.addEventListener('click', function() {
+        		if(confirm("정말로 삭제하시겠습니까?")) {
+            		location.href = this.dataset.uri;
+        		};
+    		});
+		});
+
+		const recommend_elements = document.getElementsByClassName("recommend");
+		Array.from(recommend_elements).forEach(function(element) {
+    		element.addEventListener('click', function() {
+        		if(confirm("정말로 추천하시겠습니까?")) {
+            		location.href = this.dataset.uri;
+        		};
+    		});
+		});
+		/*<![CDATA[*/
+		function amountChange(){
+			var amount = document.getElementById("amount").value;
+			amount = Number(amount);
+			var price = /*[[${item.price}]]*/'0';
+			var totalprice = price * amount ;
+			document.getElementById("totalPrice").innerHTML = totalprice ;			
+		}
+		/*]]>*/
+		
+		function cart(){
+			document.getElementById("itemAmount").value = Number(document.getElementById("amount").value);
+			document.getElementById("createCartItem").submit();
+			
+		}
+		
+		function order(){
+			alert("준비중입니다.")
+		}
+		
+		
+	</script>
+	
+	
+	
+  
+</html>	
+
+	

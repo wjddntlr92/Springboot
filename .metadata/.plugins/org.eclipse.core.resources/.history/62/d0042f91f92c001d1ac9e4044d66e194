@@ -1,0 +1,36 @@
+package com.mysite.sbb.item;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+
+
+import com.querydsl.jpa.impl.JPAQueryFactory;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+public class ItemRepositoryImpl extends QuerydslRepositorySupport implements ItemRepositoryCustom {
+	
+	@Autowired
+	private final JPAQueryFactory queryFactory;
+	
+	
+	public ItemRepositoryImpl() {
+		super(SiteItem.class);				
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+	@Override
+	public Page<SiteItem> findBySearchOption(Pageable pageable, String kw){
+		
+		Page<SiteItem> result = 
+		
+		
+				
+				
+	}
+}

@@ -1,0 +1,5 @@
+package com.mysite.sbb.item;
+
+public interface ItemRepositoryCustom {
+
+}

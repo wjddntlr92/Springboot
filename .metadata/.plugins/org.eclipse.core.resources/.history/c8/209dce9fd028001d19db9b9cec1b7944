@@ -1,0 +1,78 @@
+package com.mysite.sbb.cart;
+
+import java.security.Principal;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.mysite.sbb.cartItem.CartItem;
+import com.mysite.sbb.cartItem.CartItemDTO;
+import com.mysite.sbb.cartItem.CartItemService;
+import com.mysite.sbb.item.ItemService;
+import com.mysite.sbb.item.SiteItem;
+import com.mysite.sbb.user.SiteUser;
+import com.mysite.sbb.user.UserService;
+
+import lombok.RequiredArgsConstructor;
+
+
+@RequestMapping("/cart")
+@Controller
+@RequiredArgsConstructor
+public class CartController {
+	
+	private final UserService userService;
+	private final CartService cartService;	
+	private final ItemService itemService;
+	private final CartItemService cartItemService;
+	
+	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping("/list")
+	public String showCartList(Model model, Principal principal) {
+		SiteUser siteUser = this.userService.getUser(principal.getName());
+		Cart cart = this.cartService.getCart(siteUser);
+		model.addAttribute("cart", cart);
+		
+		return "/cart/list";
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/create")
+	public String createCartItem(@Valid CartItemDTO cartItemDTO, BindingResult bindingResult ,Principal principal, RedirectAttributes redirect, Model model) {
+				
+		SiteItem siteItem = this.itemService.getItem(cartItemDTO.getItemId());
+		SiteUser siteUser = this.userService.getUser(principal.getName());
+		Cart cart = this.cartService.getCart(siteUser);
+		Optional<CartItem> cartItem = this.cartItemService.getPersonCartItem(siteItem, cart);
+		
+		if(cartItem.isPresent()) {
+			bindingResult.reject("중복에러", "이미 장바구에 추가되었습니다.");
+			
+			
+			redirect.addFlashAttribute("bindingResult", bindingResult);
+			return String.format("redirect:/item/detail/%s",cartItemDTO.getItemId());
+		}
+		
+		Cart cart = this.cartService.getCart(siteItem.getAuthor());
+		
+		this.cartItemService.createCartItem(cart, siteItem, cartItemDTO.getItemAmount());
+		
+		model.addAttribute("addItemSuccess", "성공");
+		
+		return String.format("redirect:/item/detail/%s", cartItemDTO.getItemId());
+		
+	}
+
+	
+	
+}
